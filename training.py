@@ -17,6 +17,9 @@ from typing import Dict, List, Tuple, Optional
 from tqdm import tqdm
 from PIL import Image
 from datetime import datetime
+import requests
+import wandb
+import json
 
 
 def download_file(url, save_path):
@@ -381,22 +384,7 @@ class CombinedLoss(nn.Module):
         # Combine losses with weights
         return self.binary_weight * binary_loss + self.multi_weight * multi_loss
 
-import os
-import numpy as np
-import torch
-import torch.nn as nn
-import wandb
-from torch.optim import AdamW
-from torch.optim.lr_scheduler import OneCycleLR
-from torch.utils.data import DataLoader, SubsetRandomSampler
-from sklearn.model_selection import StratifiedKFold
-from sklearn.metrics import roc_auc_score, balanced_accuracy_score, confusion_matrix
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple
-from tqdm import tqdm
-import pandas as pd
-import json
-from datetime import datetime
+
 
 class EarlyStopping:
     def __init__(self, patience: int = 15, min_delta: float = 0):
